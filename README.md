@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Hand Gesture PC Control: a cursor glides to a folder and clicks with a pinch" width="100%">
+</p>
+
 # Hand Gesture PC Control
 
 Control your computer's mouse with hand gestures using only a webcam. Move your hand to move the cursor, pinch to click and drag, open files with a gesture, and scroll with a peace sign. Built with Python, OpenCV, MediaPipe, and PyAutoGUI.
@@ -151,6 +155,8 @@ MediaPipe is pinned to `0.10.14` because the script uses the legacy `mp.solution
 
 ```
 hand-gesture-control/
+├── assets/
+│   └── banner.svg      # animated banner shown in this README
 ├── hand_control.py     # main script
 ├── requirements.txt    # dependencies
 └── README.md
@@ -160,6 +166,3 @@ hand-gesture-control/
 
 Issues and pull requests are welcome. Ideas for new gestures, better tuning defaults, or multi-monitor support are especially appreciated.
 
-## License
-
-Add a license of your choice (for example, [MIT](https://choosealicense.com/licenses/mit/)) by creating a `LICENSE` file in the repo.
