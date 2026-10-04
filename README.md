@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Hand Gesture PC Control: a cursor glides to a folder and clicks with a pinch" width="100%">
+  <img src="assets/banner.svg" alt="Animated demo: a webcam view of a hand skeleton moves the cursor, pinches to drag a file into a folder, opens it with a ring finger pinch, and scrolls with a peace sign" width="100%">
 </p>
 
 # Hand Gesture PC Control
@@ -156,7 +156,7 @@ MediaPipe is pinned to `0.10.14` because the script uses the legacy `mp.solution
 ```
 hand-gesture-control/
 ├── assets/
-│   └── banner.svg      # animated banner shown in this README
+│   └── banner.svg      # animated gesture demo shown at the top of this README
 ├── hand_control.py     # main script
 ├── requirements.txt    # dependencies
 └── README.md
@@ -165,4 +165,5 @@ hand-gesture-control/
 ## Contributing
 
 Issues and pull requests are welcome. Ideas for new gestures, better tuning defaults, or multi-monitor support are especially appreciated.
+
 
