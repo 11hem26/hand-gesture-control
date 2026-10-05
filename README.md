@@ -54,7 +54,7 @@ Click on the preview window first, then use:
 Clone the repo:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hand-gesture-control.git
+git clone https://github.com/11hem26/hand-gesture-control.git
 cd hand-gesture-control
 ```
 
