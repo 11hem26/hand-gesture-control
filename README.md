@@ -62,8 +62,6 @@ pip install opencv-python mediapipe pyautogui
 python hand_control.py
 ```
 
-(Rename the script to match your file name if you called it something else, for example `hand_control_commented.py`.)
-
 ### Platform notes
 - **macOS:** grant your terminal **Camera** and **Accessibility** permissions (System Settings, Privacy & Security).
 - **Linux:** works on X11. On Wayland, PyAutoGUI often cannot move or click the mouse.
@@ -72,7 +70,7 @@ python hand_control.py
 
 ## Configuration
 
-All settings are constants at the top of the script.
+All settings are constants at the top of `hand_control.py`.
 
 | Setting | What it does |
 |---|---|
@@ -113,6 +111,31 @@ All settings are constants at the top of the script.
 3. Pinches are detected from thumb-to-fingertip distance divided by palm size, with hysteresis and frame confirmation. Only one finger can pinch at a time.
 4. Fist, scroll pose and open hand are detected by comparing fingertip and knuckle distances from the wrist.
 5. PyAutoGUI sends the mouse movement, clicks and scrolls.
+
+## Project structure
+
+```
+.
+├── hand_control.py   # the whole app (single file)
+├── banner.svg        # README banner
+└── README.md
+```
+
+### Code layout (`hand_control.py`)
+
+| Piece | Job |
+|---|---|
+| Settings | Constants at the top of the file |
+| Helpers, `OneEuro`, `Camera` | Distance math, cursor smoothing filter, threaded webcam reader |
+| `MouseButton` | Holds / releases the left button (only the fist holds it) |
+| `HandMotion` | Palm size and hand speed |
+| `PinchTracker` | Index and ring pinch detection, fires once per pinch |
+| `ScrollGesture` | Peace-sign scroll mode |
+| `FistGesture` | Fist grab, including the "open hand first" check |
+| `Cursor` | Smoothing, corner margin and deadzone |
+| `App` | Camera, hand tracking, gestures, mouse and preview window |
+
+To add a gesture, give it its own small class like the ones above, update it once per frame in `App.track_hand`, and act on it in `App.normal_mode`.
 
 ## Contributing
 
