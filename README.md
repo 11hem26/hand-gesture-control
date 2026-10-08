@@ -1,3 +1,5 @@
+![Hand Gesture PC Control](banner.svg)
+
 # Hand Gesture PC Control
 
 Control your mouse with nothing but a webcam and your hand. The script tracks your **palm** (not your fingertip) so the cursor stays steady, and uses a few simple gestures for opening files, right-clicking, moving files and scrolling.
