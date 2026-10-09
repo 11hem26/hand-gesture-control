@@ -58,7 +58,7 @@ venv\Scripts\activate
 # macOS / Linux
 source venv/bin/activate
 
-pip install opencv-python mediapipe pyautogui
+pip install requirement.txt
 python hand_control.py
 ```
 
