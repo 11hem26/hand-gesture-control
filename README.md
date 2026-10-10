@@ -1,7 +1,7 @@
 # ✋ Hand Gesture PC Control
 
 <p align="center">
-  <img src="hand-gestures.png" alt="Hand Gesture PC Control Banner" width="100%">
+  <img src="hand-gestures.png.png" alt="Hand Gesture PC Control Banner" width="100%">
 </p>
 
 <p align="center">
