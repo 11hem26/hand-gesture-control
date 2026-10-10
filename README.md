@@ -1,142 +1,140 @@
-![Hand Gesture PC Control](banner.svg)
+# ✋ Hand Gesture PC Control
 
-# Hand Gesture PC Control
+<p align="center">
+  <img src="banner.svg" alt="Hand Gesture PC Control Banner" width="100%">
+</p>
 
-Control your mouse with nothing but a webcam and your hand. The script tracks your **palm** (not your fingertip) so the cursor stays steady, and uses a few simple gestures for opening files, right-clicking, moving files and scrolling.
+<p align="center">
+  Control your computer mouse using hand gestures and a webcam!
+</p>
 
-Built with [MediaPipe Hands](https://developers.google.com/mediapipe/solutions/vision/hand_landmarker), OpenCV and PyAutoGUI.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9--3.12-blue?logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv" alt="OpenCV">
+  <img src="https://img.shields.io/badge/MediaPipe-Hand%20Tracking-orange" alt="MediaPipe">
+</p>
 
-## Gestures
+## 📌 Project Overview
 
-| Gesture | Action |
-|---|---|
-| Move your open hand | Move the cursor |
-| Pinch **thumb + index** | **Open** a file / folder (double click) |
-| Pinch **thumb + ring** | **Right click** |
-| **Fist** ✊ | **Move a file**: grab, move your hand, open your hand to drop |
-| **Peace sign** ✌️ (index + middle up, ring + pinky curled) | **Scroll mode** |
+**Hand Gesture PC Control** is a Python-based project that allows you to control your computer mouse using hand gestures captured through a webcam.
 
-### Scroll mode
-The cursor freezes. Move your hand up or down from where you started: hand above the start line scrolls up, below scrolls down. The further you move, the faster it scrolls. Return to the start position to stop. Close to the start point there is a dead band where nothing happens.
+It uses **OpenCV** to process camera frames, **MediaPipe** to track hand landmarks, and **PyAutoGUI** to control mouse movements and actions.
 
-### Keys (in the preview window)
-| Key | Action |
-|---|---|
-| `q` | Quit |
-| `p` | Pause / resume control |
+You can move the cursor, open files, right-click, drag and drop files, and scroll without using a physical mouse.
 
-### Safety
-- Slam the mouse into the **top-left corner** of the screen to trigger PyAutoGUI's failsafe; the script exits cleanly and releases the mouse button.
-- The hand-controlled cursor is kept away from that corner, so it can't trigger the failsafe by accident.
-- Press `p` to pause when you're not using it.
+### 🎯 Objective
 
-## Features
+To develop a touch-free computer control system using real-time hand tracking and computer vision.
 
-- **Palm tracking** with a One Euro filter: steady when you hover, responsive when you move fast.
-- **Click lock:** the cursor freezes while a pinch or fist is forming, so clicks land where you aimed.
-- **Accidental-gesture protection:**
-  - Open and right-click are ignored while the hand is moving fast or near the edge of the camera view.
-  - A fist only grabs after your hand has been open first, so a resting fist never grabs.
-  - A dropped-tracking grace period stops a single bad frame from dropping a file.
-- Threaded camera capture, so the main loop always works on the newest frame.
+### 💡 Applications
 
-## Requirements
+- Hands-free computer interaction
+- Touch-free navigation
+- Computer vision learning
+- Human-computer interaction
 
-- Python 3.9 - 3.12
-- A webcam
-- Packages: `opencv-python`, `mediapipe`, `pyautogui`
+## 🚀 Features
 
-## Setup
+- 🖐️ Move the mouse cursor using your hand.
+- 👌 Pinch thumb and index finger to open files or folders.
+- 🤏 Pinch thumb and ring finger to right-click.
+- ✊ Use a fist to drag and drop files.
+- ✌️ Use a peace sign to scroll.
+- ⏯️ Pause and resume mouse control.
+- 🎥 Real-time webcam hand tracking.
+- 🛡️ PyAutoGUI failsafe for emergency stopping.
+
+## 🛠️ Technologies Used
+
+- **Python** — Main programming language
+- **OpenCV** — Webcam and image processing
+- **MediaPipe** — Hand landmark detection
+- **PyAutoGUI** — Mouse control
+
+## 📋 Requirements
+
+- Python 3.9–3.12
+- A working webcam
+- Windows, macOS, or a compatible Linux desktop
+- Required Python packages listed in `requirements.txt`
+
+## 📥 Installation
+
+### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-name>
+git clone https://github.com/11hem26/hand-gesture-control.git
+cd hand-gesture-control
+```
 
+### 2. Create a virtual environment
+
+```bash
 python -m venv venv
-# Windows
-venv\Scripts\activate
-# macOS / Linux
-source venv/bin/activate
+```
 
-pip install requirement.txt
+### 3. Activate the virtual environment
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install dependencies
+
+Install all required packages using your `requirements.txt` file:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 5. Run the project
+
+```bash
 python hand_control.py
 ```
 
-### Platform notes
-- **macOS:** grant your terminal **Camera** and **Accessibility** permissions (System Settings, Privacy & Security).
-- **Linux:** works on X11. On Wayland, PyAutoGUI often cannot move or click the mouse.
-- **MediaPipe:** the script uses the legacy `mp.solutions.hands` API. If you get an `AttributeError`, install an older release, for example `pip install mediapipe==0.10.14`.
-- **Camera:** if the wrong or no camera opens, change `CAM_INDEX` (try `1`, `2`, ...).
+## ✋ Hand Gestures
 
-## Configuration
+| Symbol | Gesture | Action |
+|---|---|---|
+| 🖐️ | Open Hand | 🖱️ Move Cursor |
+| 👌 | Thumb + Index Pinch | 📂 Open File / Folder |
+| 🤏 | Thumb + Ring Pinch | 🖱️ Right Click |
+| ✊ | Fist | 📦 Drag & Drop Files |
+| ✌️ | Peace Sign | 📜 Scroll Up / Down |
 
-All settings are constants at the top of `hand_control.py`.
 
-| Setting | What it does |
+## ⌨️ Keyboard Controls
+
+| Key | Action |
 |---|---|
-| `CAM_INDEX`, `FRAME_W`, `FRAME_H`, `CAM_FPS` | Camera selection and resolution |
-| `MODEL_COMPLEXITY` | `0` = faster / less accurate, `1` = more accurate |
-| `MARGIN_X`, `MARGIN_Y` | Camera edge ignored, so you can reach screen corners without stretching |
-| `CURSOR_MIN_CUTOFF`, `CURSOR_BETA` | Cursor smoothing: lower cutoff = steadier, higher beta = less lag when moving fast |
-| `CURSOR_DEADZONE_PX` | Ignore cursor movements smaller than this |
-| `PINCH_ON`, `PINCH_OFF`, `PINCH_MARGIN` | Pinch thresholds (relative to palm size) |
-| `PINCH_CONFIRM`, `PINCH_SMOOTH` | Pinch speed vs. reliability (lower confirm / higher smooth = faster) |
-| `CLICK_COOLDOWN` | Seconds between right clicks / opens |
-| `ACTION_MAX_SPEED`, `EDGE_GUARD` | When gestures are ignored (hand too fast or too near the edge) |
-| `FIST_CONFIRM`, `FIST_RELEASE_FRAMES`, `FIST_CURL_RATIO`, `FIST_NEEDS_OPEN_FIRST` | Fist grab sensitivity and drop safety |
-| `SCROLL_DEADBAND`, `SCROLL_MAX_SPEED`, `SCROLL_CURVE`, `SCROLL_FULL_SPEED_AT` | Scroll feel |
+| `p` | Pause or resume control |
+| `q` | Quit the application |
 
-### Tuning tips
-- **Cursor jittery:** lower `CURSOR_MIN_CUTOFF` or raise `CURSOR_DEADZONE_PX`.
-- **Cursor laggy:** raise `CURSOR_BETA` or `CURSOR_MIN_CUTOFF`.
-- **Pinch too slow:** lower `PINCH_CONFIRM` or raise `PINCH_SMOOTH`.
-- **Accidental clicks:** raise `PINCH_CONFIRM` to 2, or lower `PINCH_ON`.
-- **Fist triggers too easily or not at all:** adjust `FIST_CURL_RATIO` (lower = tighter fist needed).
-- **Low frame rate:** set `MODEL_COMPLEXITY = 0` and check the fps counter in the preview.
+## ⚙️ Troubleshooting
 
-## Troubleshooting
+- **Webcam not opening:** Close other applications using the camera or check the camera index in the Python script.
+- **MediaPipe error:** Check your Python version and install compatible dependencies.
+- **Cursor not moving:** Check camera permissions and ensure your hand is visible.
+- **Gestures not working properly:** Use good lighting and keep your hand inside the camera frame.
+- **Package installation failed:** Update pip using `python -m pip install --upgrade pip` and try installing the requirements again.
 
-| Problem | Fix |
-|---|---|
-| `Could not open webcam` | Change `CAM_INDEX`, and close other apps using the camera |
-| Cursor doesn't move on Linux | You are probably on Wayland; use an X11 session |
-| Nothing happens on macOS | Grant Camera and Accessibility permissions to your terminal |
-| Gestures unreliable | Use good, even lighting and keep your hand clearly in view |
-| Script exits suddenly | The mouse reached the top-left corner (PyAutoGUI failsafe) |
+## 👨‍💻 Author
 
-## How it works
+**Hemanth KR**
 
-1. The webcam frame is mirrored and passed to MediaPipe Hands, which returns 21 landmarks for one hand.
-2. The palm center (wrist plus the four finger base knuckles) is mapped to screen coordinates and smoothed with a One Euro filter.
-3. Pinches are detected from thumb-to-fingertip distance divided by palm size, with hysteresis and frame confirmation. Only one finger can pinch at a time.
-4. Fist, scroll pose and open hand are detected by comparing fingertip and knuckle distances from the wrist.
-5. PyAutoGUI sends the mouse movement, clicks and scrolls.
+GitHub: [@11hem26](https://github.com/11hem26)
 
-## Project structure
+## ⭐ Support
 
-```
-.
-├── hand_control.py   # the whole app (single file)
-├── banner.svg        # README banner
-└── README.md
-```
+If you find this project useful, please give the repository a star ⭐
 
-### Code layout (`hand_control.py`)
-
-| Piece | Job |
-|---|---|
-| Settings | Constants at the top of the file |
-| Helpers, `OneEuro`, `Camera` | Distance math, cursor smoothing filter, threaded webcam reader |
-| `MouseButton` | Holds / releases the left button (only the fist holds it) |
-| `HandMotion` | Palm size and hand speed |
-| `PinchTracker` | Index and ring pinch detection, fires once per pinch |
-| `ScrollGesture` | Peace-sign scroll mode |
-| `FistGesture` | Fist grab, including the "open hand first" check |
-| `Cursor` | Smoothing, corner margin and deadzone |
-| `App` | Camera, hand tracking, gestures, mouse and preview window |
-
-To add a gesture, give it its own small class like the ones above, update it once per frame in `App.track_hand`, and act on it in `App.normal_mode`.
-
-## Contributing
-
-Issues and pull requests are welcome.
+**Learn • Build • Improve 🚀**
