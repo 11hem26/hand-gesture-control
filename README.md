@@ -129,8 +129,6 @@ python hand_control.py
 
 ## 👨‍💻 Author
 
-**Hemanth KR**
-
 GitHub: [@11hem26](https://github.com/11hem26)
 
 ## ⭐ Support
